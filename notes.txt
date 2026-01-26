@@ -1,0 +1,217 @@
+> Java was developed in 1991 by James Gosling and his team at Sun Microsystems. Initially it was called Oak, then Green and 
+  finally Java inspired by Java coffee. In 2010, Sun Microsystems was acquired by Oracle. 
+
+> The smallest building block in java program is a function. Functions are specific block of code 
+  that performs a specific task.
+
+> Every Java program must have at least one class.
+    > If the class is public, the filename must match the class name. Let's say the className is HelloWorld then file 
+    name must be HelloWorld.java
+
+    > In the Java programming language, every application must contain a main method as it is the entry point of the 
+    application. 
+
+
+> public static void main(String[] args)
+    public: Allows JVM to access the method from anywhere.
+    static: Method can run without creating an object.
+    void: It doesn’t return any value.
+    String[] args: Accepts command-line arguments.
+
+> System.out.println("Hello, World");
+    System: Built-in class from java.lang package.
+    out: Static member (PrintStream object) of System.
+    println(): Method that prints to console and moves to the next line.
+
+
+===================== *** Different Editions of Java *** =================================================
+
+
+> We have four different Editions of java for building different applications : 
+  1. Standard Edition (SE)
+  2. Enterprise Edition (EE): used for building very large scale fault tolerant distributed applications.
+                              It is build on top of Standard Edition. 
+
+  3. Micro Edition (ME): It is a subset of Java Standard Edition designed for mobile devices so it has 
+                         libraries specific to mobile devices. 
+
+  4. Java Card: it is used in smart cards. 
+
+
+=========================== *** Implementation a Java Program *** ========================================================
+
+
+> Steps to Implement a Java Program: 
+    > Java is a platform-independent language that follows a two-step execution process:
+        Compilation (source code -> bytecode)
+        Execution (bytecode -> machine code via JVM)
+    
+    1. Compilation in Java
+        Java source code (.java files) is compiled by the Java Compiler (javac) into Bytecode, stored in .class files. 
+        This bytecode is platform-independent and ready to run on any system with a JVM.
+
+    2. Execution via JVM
+        The .class files are executed by the Java Virtual Machine (JVM), which includes the following stages:
+        2.1 Class Loader
+            Loads the main class and other dependencies into memory.
+
+        2.2 Bytecode Verifier
+            Checks that the loaded bytecode is safe to execute. It ensures:
+            Variables are initialized
+            Method signatures are correct
+            Private access rules aren’t violated
+            No stack overflows
+        
+        2.3 Just-In-Time (JIT) Compiler
+            Converts bytecode into native machine code at runtime for faster execution.
+
+
+> WORA — Write Once, Run Anywhere
+
+> Why is Java considered secure?
+    Because of:
+    No pointer arithmetic
+    Bytecode verification
+    Security Manager
+    Sandbox execution model
+
+> Java LTS versions are: 8, 11, 17, 21
+
+================================ *** JVM (Java Virtual Machine) *** =========================================================
+
+
+> The Java Virtual Machine (JVM) is a core component of the Java Runtime Environment (JRE) that allows Java programs to run 
+  on any platform without modification.
+  JVM acts as an interpreter between Java bytecode and the underlying hardware, providing Java’s famous Write Once, Run 
+  Anywhere (WORA) capability.
+
+    - Java source (.java) -> compiled by javac -> bytecode (.class)
+    - JVM loads the bytecode, verifies it, links it, and then executes it
+    - Execution may involve interpreting bytecode or using Just-In-Time (JIT) compilation to convert “hot” code into native 
+    - machine code for performance
+    - Garbage collection runs in the background to reclaim memory from unused objects
+
+
+> JVM (Java Virtual Machine) is responsible for:
+    Loading bytecode
+    Verifying bytecode
+    Executing bytecode 
+
+> 
+
+
+
+================================= *** Taking I/O *** =================================================================
+
+
+> We can take input from a user by two methods: 
+  1. Scanner
+  2. BufferedReader + InputStreamReader
+  3. Console
+  4. DataInputStream (old but faster, now it is outdated)
+  5. Using Command Line Arguments 
+
+    -------------------------------------------------
+    | Feature | Scanner            | BufferedReader |
+    | ------- | ------------------ | -------------- |
+    | Speed   | Slower             | Faster         |
+    | Parsing | Built-in (nextInt) | Manual parsing |
+    | Ease    | Beginner-friendly  | More control   |
+    -------------------------------------------------
+    ---------------------------------------------------------------
+    | Method            | Speed  | Ease   | Use Case              |
+    | ----------------- | ------ | ------ | --------------------- |
+    | Scanner           | Slow   | Easy   | Small input, learning |
+    | BufferedReader    | Fast   | Medium | CP, large input       |
+    | Console           | Medium | Easy   | Secure input          |
+    | DataInputStream   | Fast   | Hard   | Legacy code           |
+    | Command Line Args | Fast   | Easy   | Config                |
+    ---------------------------------------------------------------
+
+> Scanner sc = new Scanner(System.in);    // here we write "System.in" because we are taking input from terminal
+
+    sc.nextLine() //  it will take whole string as input
+    sc.next() // it will take only first string as input, if the user type "Ramesh Bhatt" only Ramesh is taken as input. 
+    sc.nextInt()
+    sc.nextFloat()
+    sc.nextDouble()
+
+
+> We can use both Scanner and BufferedReader together but it is not recommended due to input buffer conflicts.
+
+
+
+============================ *** Primitive and Non-Primitive *** ===========================================
+
+
+> There are two types in Java: 
+
+  1. Primitive: for storing simple values. Some of the primitive types are: 
+                byte, short, int, long, float, double. 
+            
+            > The range of byte is [-128, 127]. 
+            > Char in java is of 2 bytes unlike C++ in which it is of 1 byte. 
+            > Bool is of 1 byte.   
+
+  2. Reference (Non-primitive): for storing complex values. example : string,arrays, Hashmaps
+
+
+
+
+======================================= *** Parse Methods in Java *** =================================================
+
+
+> Java parse methods convert strings into primitive data types and are provided by wrapper classes like Integer, 
+  Double, and Boolean. They throw NumberFormatException for invalid inputs, except Boolean.parseBoolean which returns false.
+
+> Parse methods convert a String → primitive data type. Most parse methods are static methods of wrapper classes.
+
+> 
+
+
+========================================= *** IMP *** ================================================================
+
+
+> In Java:
+    == or != → compares reference
+    .equals() → compares value/content
+
+> Example 1: 
+    String a = new String("java");
+    String b = new String("java");
+
+    System.out.println(a == b);        // false
+    System.out.println(a.equals(b));   // true
+
+    Here, a and b point to different objects in memory
+
+
+> Example 2: 
+    String x = "java";
+    String y = "java";
+
+    System.out.println(x == y);        // true
+    System.out.println(x.equals(y));   // true
+
+    String literals are stored in the String Constant Pool
+    Both references point to the same object
+
+
+> Since Java 7, numeric literals can include underscores (_) purely for readability.
+    int a = 100000;
+    int b = 100_000;
+    int c = 1_00_000;
+    They all represent the same integer → 100000.
+
+
+============================================ *** For each Loop *** =======================================================
+
+
+> For Each Loop: 
+    for (int x : arr) {
+        System.out.println(x);
+    }
+
+> Some of the shortcomings of For Each Loop are: 
+    1. It is always forwarding. It means we cannot iterate over a array backwards. 
+    2. We do not have access to index. 
