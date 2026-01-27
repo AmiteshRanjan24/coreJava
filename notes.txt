@@ -172,6 +172,11 @@
 ========================================= *** IMP *** ================================================================
 
 
+> By default value of:
+  String is null 
+  int is 0
+  float is 0.0 
+
 > In Java:
     == or != → compares reference
     .equals() → compares value/content
@@ -215,3 +220,165 @@
 > Some of the shortcomings of For Each Loop are: 
     1. It is always forwarding. It means we cannot iterate over a array backwards. 
     2. We do not have access to index. 
+
+
+
+===================================== *** Java Collections Framework *** ====================================================
+
+
+> Java Collections Framework is a unified architecture that provides interfaces, classes, and algorithms to store, 
+  manipulate, and retrieve groups of objects efficiently. Introduced in Java 1.2
+
+> CORE components are: 
+    1. Interfaces: Iterable, Collection, List, Queue, Set 
+    2. Implementation(Classes): ArrayList, PriorityQueue, HashSet, LinkedList
+    3. Algorithms: Sorting, Searching
+
+
+> The Iterable interface represents an object that is iterable meaning we can iterate or loop over it without knowing anything
+  about its implementation detail. 
+
+> 
+
+
+
+======================================= *** Packages *** ==================================================================
+
+
+> A package in Java is a mechanism to group related classes, interfaces, and sub-packages into a single unit. Packages help 
+  organize large applications, avoid naming conflicts, provide access protection, and make code modular and maintainable.
+
+> Avoiding name conflicts (two classes with the same name can exist in different packages)
+  Providing access control using public, protected, and default access
+  Reusability: packaged code can be imported and used anywhere
+  Encouraging modular programming
+
+> There are two types of packages: 
+  1. Built-in packages: 
+        > Built-in Packages comprise a large number of classes that are part of the Java API. Some of the commonly used 
+          built-in packages are: java.lang, java.io, java.util, etc.
+
+  2. User defined packages: 
+        > packages that are defined by the user.
+
+
+> Packages in Java are like folders that organize your code files, provide namespaces, and help manage access and distribution.
+
+
+======================================= *** OOPS *** =======================================================================
+
+
+> class is a logical construct. 
+> Object is an instance of a class. So here by instance we mean: Object is the physical reality. This is the thing which 
+  exists in the memory or occupy space in memory. Example: Baby is a instance of human class.
+
+> Properties of Objects: 
+  1. State of the object
+  2. Identity of the object
+  3. Behavior of the object
+
+> All objects in Java are allocated on the heap. Stack stores only references and primitives.
+
+> For objects in java the by default value stored in memory is null. 
+
+> In Java we cannot access the memory address of an object, as we do in C++. 
+
+> Static Variables are Stored in the Method Area (a part of JVM memory model). 
+
+> To check type of object we can use: 
+  1. instanceof
+        if (obj instanceof Student) {
+            // true if obj is a Student or subclass
+        }
+  
+  2. getClass() 
+        String s = "Hello";
+        System.out.println(s.getClass().getName()); // java.lang.String
+ 
+
+
+====================================== *** new Keyword *** =========================================================
+
+
+> Dynamically allocates memory at runtime and returns reference to it. 
+
+
+===================================== *** this Keyword *** ========================================================
+
+
+> It refers to the current object.
+
+
+======================================= *** final Keyword *** ======================================================
+
+
+> when final Keyword is used, the value of variable become constant i.e. it will not change further. 
+  But it holds true only for primitive data types. 
+
+  > If a object is made final then its reference cannot change but values can change. 
+    Example: 
+
+    final Student s1 = new Student();
+    s1.name = "Amitesh";
+    s1.name = "Mohit"; 
+    Student s2 = new Student();
+
+    s1 = s2;  Error — cannot change the reference
+
+>> final applies to the reference, not to the object it refers to.
+
+
+> final variables must be initialized. 
+
+> If there is final Keyword used before a variable make sure it is written in capital. 
+  Example: final int PI = 3.14;
+
+
+
+==================================== *** finalize method *** ========================================================
+
+
+> finalize method is called when the object goes out of scope. Since we cannot manually destroy a object we can 
+  make finalize method do certain stuffs if needed. 
+
+
+
+==================================== *** static Keyword *** ========================================================
+
+
+> static is a keyword used to define class-level members that belong to the class itself, not to individual objects.
+
+> Memory allocated once, shared by all objects.
+
+> Why static Exists (Interview Angle)
+    Saves memory
+    Represents common/shared data
+    Allows access without creating objects
+
+> By convention static should be accessed using class, but we can access it using reference object but it is not 
+  preferred. 
+
+
+> static block: 
+
+    static {
+        System.out.println("Hello from static block");
+    }
+
+    > static block is executed only once when the class is loaded for the very first time. 
+
+
+> Top level class cannot be static. Only inner classes can be static. 
+  A top-level class cannot be static because static is used to associate a member with an enclosing class, and a top-level 
+  class has no enclosing class. Inner classes can be static or non-static because they belong to another class.
+
+
+> What static Actually Means ? 
+    In Java, static = belongs to the class, not to an object.
+        So for static to make sense:
+        There must be another class to attach to
+        i.e., an enclosing (outer) class
+
+
+> static variables, methods, classes and stuffs are resolved during compile time. 
+
