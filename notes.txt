@@ -245,6 +245,9 @@
 ======================================= *** Packages *** ==================================================================
 
 
+> For reference: https://www.geeksforgeeks.org/java/packages-in-java/
+
+
 > A package in Java is a mechanism to group related classes, interfaces, and sub-packages into a single unit. Packages help 
   organize large applications, avoid naming conflicts, provide access protection, and make code modular and maintainable.
 
@@ -267,6 +270,13 @@
 
 ======================================= *** OOPS *** =======================================================================
 
+
+> Object-Oriented Programming (OOP) is a programming paradigm that organizes code into objects that contain data (attributes) 
+  and behavior (methods).
+  The goal is to model real-world entities and make code modular, reusable, and maintainable.
+
+> The fundamental unit of OOP is the object, which represents real-world entities with data (attributes) and behavior 
+  (methods).
 
 > class is a logical construct. 
 > Object is an instance of a class. So here by instance we mean: Object is the physical reality. This is the thing which 
@@ -295,6 +305,180 @@
         String s = "Hello";
         System.out.println(s.getClass().getName()); // java.lang.String
  
+
+
+====================================== *** Inheritance *** =========================================================
+
+
+> Inheritance – Allowing one class to acquire properties and behaviors of another class.
+  Example: 
+         A Car class inheriting from a Vehicle class.
+
+
+> Even like all the parent classes inherits from the Object class but it is done by java internally so no need to 
+  explicitly write super() inside its constructor. 
+
+
+> We cannot have child reference variable and parent object. 
+  Example:
+         Suppose we have parent class Box and child class Cube, so we cannot have something like this-
+         Cube c1 = new Box(); // this is wrong, because parent class Box will not be able to call child class constructor
+
+         Box b1 = new Cube(); // this can be done. 
+
+    > Also we have access to only reference type variable. i.e. we can access Properties of only Box even if we create object
+      of type Cube. 
+
+
+:: *** IMP *** :: 
+
+    If the reference is of base class and object is of child class then we can access only base class members.
+      This is correct for:
+      ✔ fields (variables)
+      ✔ methods that are not overridden
+      ✔ compile-time checks
+
+    > For overridden methods, JVM looks at the object type (Child), not the reference type (Parent).
+      This is done at runtime which is also called dynamic dispatch. 
+
+
+> static method can be inherited but cannot be overridden because it belongs to class and not to objects. 
+  i.e. we can access static methods via subclass also but we cannot override it in subclass.
+
+
+> TYPES OF INHERITANCE:  
+
+  single inheritance:     one subclass inherits one superclass; 
+  multilevel inheritance: continues in a chain; 
+  hierarchical:           multiple subclasses inherit from a single superclass; 
+  multiple inheritance:   a class inherits from multiple classes; 
+  hybrid:                 is a combination of two or more types.
+
+> C++ supports all types, Java does not support multiple inheritance using classes but achieves it through interfaces.
+
+
+> Java does not support multiple inheritance using classes to avoid ambiguity caused by the Diamond Problem and to keep 
+  the language simpler and more maintainable. Instead, Java provides interfaces that allow multiple inheritance of type 
+  without causing ambiguity.
+
+
+> Java does not support hybrid inheritance using classes because it avoids multiple inheritance of classes. However, Java can 
+  achieve hybrid inheritance using interfaces. So hybrid inheritance is indirectly supported through interfaces.
+
+
+> C++ allows multiple inheritance because it gives developers lower-level control and expects them to explicitly resolve 
+  ambiguities, while Java prioritizes simplicity and avoids such complex scenarios.
+
+
+> Java doesn’t support multiple inheritance using classes, but it allows multiple inheritance through interfaces since 
+  interfaces only define behavior and don’t create ambiguity in the state. By combining single class inheritance with 
+  multiple interface implementation, Java can also achieve hybrid inheritance. 
+
+
+> If multiple interfaces declare the same abstract method, there’s no conflict because the class must implement it. 
+  If multiple interfaces provide default implementations of the same method, Java reports an ambiguity error and forces 
+  the class to override the method and choose which one to use. This is how Java safely supports multiple inheritance 
+  using interfaces.
+
+
+
+======================================== *** Encapsulation *** =======================================================
+
+
+> Encapsulation – Binding data and methods that operate on that data together, and restricting direct access to some 
+  components.
+  Example: Private variables in a class with public getters and setters.
+
+> Encapsulation addresses implementation-level concerns, while abstraction addresses design-level concerns.
+
+> Encapsulation focuses on hiding implementation details and protecting data at the code level, whereas abstraction focuses 
+  on hiding complexity and defining clear behavior at the design level.
+
+> Data hiding is achieved via encapsulation. 
+
+
+======================================== *** Abstraction *** =============================================================
+
+
+> Abstraction – Hiding implementation details and showing only the essential features.
+  Example: A std::sort() function in C++ — you use it without knowing the internal sorting algorithm.
+
+----------------------------------------------------------------------------
+| Aspect         | Encapsulation           | Abstraction                   |
+| -------------- | ----------------------- | ----------------------------- |
+| Level          | Implementation level    | Design level                  |
+| Focus          | How it works internally | What it does                  |
+| Achieved using | Access modifiers        | Interfaces / abstract classes |
+| Problem solved | Data hiding & safety    | Complexity & design clarity   |
+----------------------------------------------------------------------------
+
+
+
+======================================== *** Polymorphism *** ========================================================
+
+
+> Polymorphism means ‘one interface, many forms’. It allows the same method to perform different behaviors based on the 
+  object. In Java/C++, polymorphism is of two types: 
+
+  1. compile-time polymorphism (static binding / compile time polymorphism):  achieved through method overloading 
+  2. run-time polymorphism (dynamic binding / runtime polymorphism / dynamic dispatch): achieved through method overriding. 
+  
+  > It improves flexibility, makes code extensible, and supports dynamic behavior — for example, calling overridden methods 
+    through parent class references at runtime.
+
+
+> Dynamic Dispatch: 
+  In Java, runtime polymorphism is achieved through dynamic dispatch (also called dynamic or late binding), where the method 
+  call is resolved at runtime based on the actual object type rather than the reference type.
+
+
+
+======================================== *** Upcasting *** ===============================================================
+
+
+> For reference: https://www.geeksforgeeks.org/java/upcasting-in-java-with-examples/
+
+
+> Upcasting is the typecasting of a child object to a parent object. Upcasting can be done implicitly. Upcasting gives us 
+  the flexibility to access the parent class members but it is not possible to access all the child class members using 
+  this feature. Instead of all the members, we can access some specified members of the child class. For instance, we can 
+  access the overridden methods.
+
+
+> Parent p = new Child();  // upcasting
+  p.show();                // runtime polymorphism
+
+  > So: upcasting enables runtime polymorphism but they are not the same thing
+
+
+> Upcasting is when a child object is referred to by a parent reference. It happens at compile time. Runtime polymorphism 
+  occurs when overridden methods are resolved at runtime based on the actual object type. Upcasting enables runtime 
+  polymorphism, but upcasting itself is not polymorphism.
+
+
+> 
+
+======================================== *** super keyword *** =========================================================
+
+
+> The super keyword in Java is used to refer to the immediate parent class. It is mainly used for three purposes:
+  - To access the parent class variables.
+  - To call the parent class methods.
+  - To call the parent class constructor
+
+> Cannot be used in static context, as static variables and all belongs to a class not to a object. 
+
+> If super() is not used in the child class constructor then default constructor of base class will be called. 
+  But if base class have parameterized constructor then super must be used in the child class otherwise it will give 
+  compile time error. 
+
+---------------------------------------------------------------------------------------------------------------------------
+| Scenario                                             | Java                           | C++                             |
+| ---------------------------------------------------- | ------------------------------ | ------------------------------- |
+| Base has default constructor                         | `super()` auto inserted, so OK | base default auto-called, so OK |
+| Base has no default constructor (only parameterized) | `super(args)` **MANDATORY**    | `: Base(args)` **MANDATORY**    |
+---------------------------------------------------------------------------------------------------------------------------
+
 
 
 ====================================== *** new Keyword *** =========================================================
@@ -327,10 +511,13 @@
 
 >> final applies to the reference, not to the object it refers to.
 
+> We cannot override a method if it is final. 
+
+> final can also be used to prevent inheritance in case we do not want to extend the class. 
 
 > final variables must be initialized. 
 
-> If there is final Keyword used before a variable make sure it is written in capital. 
+> If there is final Keyword used before a variable make sure it is written in capital.(as per naming convention) 
   Example: final int PI = 3.14;
 
 
@@ -358,7 +545,6 @@
 > By convention static should be accessed using class, but we can access it using reference object but it is not 
   preferred. 
 
-
 > static block: 
 
     static {
@@ -381,4 +567,11 @@
 
 
 > static variables, methods, classes and stuffs are resolved during compile time. 
+
+
+
+============================================ *** Annotations *** =======================================================
+
+
+> @Override is also one type of annotation. 
 
