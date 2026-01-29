@@ -141,7 +141,7 @@
 
 
 
-============================ *** Primitive and Non-Primitive *** ===========================================
+============================ *** Primitive and Non-Primitive *** ======================================================
 
 
 > There are two types in Java: 
@@ -154,6 +154,24 @@
             > Bool is of 1 byte.   
 
   2. Reference (Non-primitive): for storing complex values. example : string,arrays, Hashmaps
+
+
+
+
+====================================== *** .equals() and (==) *** ========================================================
+
+
+> In java, the main differences are that == is an operator used for both primitives (value comparison) and objects 
+  (reference comparison), while .equals() is a method used only for objects (content comparison, typically)
+
+
+> == Operator
+  > For primitive types (like int, char, boolean, etc.), == compares the actual values stored in the variables.
+  > For objects (reference types), == compares the memory locations (references) to check if both variables point to 
+    the exact same object instance in memory. It checks for object identity. 
+
+
+> .equals() is a method defined in the Object class that is intended to compare the content or state of two objects.
 
 
 
@@ -266,6 +284,7 @@
 
 
 > Packages in Java are like folders that organize your code files, provide namespaces, and help manage access and distribution.
+
 
 
 ======================================= *** OOPS *** =======================================================================
@@ -381,6 +400,9 @@
   using interfaces.
 
 
+> Some methods of Object class that we can override are: toString(), clone(), hashCode(), finalize(), equals()
+
+
 
 ======================================== *** Encapsulation *** =======================================================
 
@@ -420,8 +442,8 @@
 > Polymorphism means ‘one interface, many forms’. It allows the same method to perform different behaviors based on the 
   object. In Java/C++, polymorphism is of two types: 
 
-  1. compile-time polymorphism (static binding / compile time polymorphism):  achieved through method overloading 
-  2. run-time polymorphism (dynamic binding / runtime polymorphism / dynamic dispatch): achieved through method overriding. 
+  1. compile-time polymorphism :  achieved through method overloading 
+  2. run-time polymorphism     : achieved through method overriding. 
   
   > It improves flexibility, makes code extensible, and supports dynamic behavior — for example, calling overridden methods 
     through parent class references at runtime.
@@ -430,6 +452,19 @@
 > Dynamic Dispatch: 
   In Java, runtime polymorphism is achieved through dynamic dispatch (also called dynamic or late binding), where the method 
   call is resolved at runtime based on the actual object type rather than the reference type.
+
+
+> Static Binding / Early Binding: 
+  In Java, compile time polymorphism is achieved through static binding or ealy binding, where the method call is resolved 
+  at compile time based on method signature, not on the object or reference type. 
+
+
+-----------------------------------------------------------
+| Polymorphism Type | Binding        | Decided Based On   |
+| ----------------- | -------------- | ------------------ |
+| Compile-time      | Static / Early | Method signature   |
+| Runtime           | Dynamic / Late | Actual object type |
+-----------------------------------------------------------
 
 
 
@@ -567,6 +602,105 @@
 
 
 > static variables, methods, classes and stuffs are resolved during compile time. 
+
+
+
+============================================ *** Abstract Classes *** =====================================================
+
+
+> For reference: https://www.geeksforgeeks.org/java/abstract-classes-in-java/
+
+
+> In Java, an abstract class is a class that cannot be instantiated and is designed to be extended by other classes. It is 
+  used to achieve partial abstraction, where some methods are implemented while others are left for subclasses to define. 
+  An abstract class is declared using the abstract keyword. 
+  It may contain:
+    Abstract methods (methods without a body)
+    Concrete methods (methods with implementation)
+    Constructors
+    Instance variables
+    Static and final methods
+
+> If a class contain abstract method then it must be declared abstract. 
+
+> An abstract class cannot be instantiated, but can have references to abstract class type though.
+
+> The crux is abstract method is meant to be overridden. So we cannot make static method as abstract as static method cannot be 
+  overridden. But we can have static methods inside a abstract class. 
+
+  Similarly we cannot make constructor of abstract class as abstract constructor, as abstract method are only declared and 
+  supposed to be overridden by subclass. 
+
+
+> Why to use Abstract classes or methods ? 
+  Abstract classes and methods are used to define a common blueprint for subclasses, enforce implementation of important 
+  behavior, and support runtime polymorphism while preventing creation of incomplete objects.
+
+  > Why not just use interfaces ?
+    Abstract classes are used when we need both abstraction and shared implementation, whereas interfaces are used when 
+    we need pure abstraction or multiple inheritance.
+
+
+> Why Abstract classes do not support multiple inheritance ? 
+  Abstract classes do not support multiple inheritance in Java to avoid ambiguity and complexity, especially the Diamond 
+  Problem, since abstract classes can contain state and concrete method implementations. 
+
+
+
+============================================ *** Interfaces *** =======================================================
+
+
+> An interface in Java is a blueprint of a class that defines a contract. It specifies what a class must do, not how it 
+  does it. Interfaces define behavior, not implementation.
+
+> Interfaces are used to:
+  - Achieve abstraction
+  - Support multiple inheritance
+  - Define a common contract for unrelated classes
+  - Enable loose coupling and clean design
+
+> A class that implements an interface must implement all the methods of the interface. Only variables are public static 
+  final by default.
+  Before Java 8, interfaces could only have abstract methods (no bodies). Since Java 8, they can also include default and 
+  static methods (with implementation) and since Java 9, private methods are allowed.
+
+
+> Two or more classes that are unrelated to each other can also implement interfaces. 
+
+> If one interface extends another interface, then the class which implements the interface has to define all the methods 
+  that are present in both interfaces. 
+  Example: 
+    public interface A {
+      void name();
+    }
+    public interface B extends A {
+      void greet();
+    }
+
+    public class C implements B {
+      @Override
+      void show() {
+        System.out.println("I am class C");
+      }
+
+      @Override
+      void greet() {
+        System.out.println("Hey!");
+      }
+    }
+
+
+> static interface methods should always have a body because they cannot be inherited and overridden as they belong to that 
+  particular interface or class and not to any object. 
+
+
+> If a method is overridden in a child class then the access modifier of that method must be less restricting than in the 
+  base class. I mean if base class method is protected then we can have public in child class but not private. 
+
+  Thumb Rule: It should always be less restrictive. 
+
+
+> The nested interface can be public, private or protected. But the top level interface can be public or default. 
 
 
 
